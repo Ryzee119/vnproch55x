@@ -123,9 +123,9 @@ int main(int argc, char const *argv[])
 	libusb_init(NULL);
 	
 	h = libusb_open_device_with_vid_pid(NULL, 0x4348, 0x55e0);
-
+    /* this call fails silently if permissions are incorrect. Give user a prompt */
 	if (h == NULL) {
-		printf("Found no CH55x USB\n");
+		printf("Found no CH55x USB.  Permissions?\n");
 		return 1;
 	}
 	
@@ -163,7 +163,7 @@ int main(int argc, char const *argv[])
 		return 1;
 	}
 	
-	printf("Found Device CH55%x\n", u8DeviceID);
+	printf("Found Device CH5%x\n", u8DeviceID);
 
 	/* Bootloader and Chip ID */
 	if (!Write(u8IdCmd, u8IdCmd[1] + 3)) {
