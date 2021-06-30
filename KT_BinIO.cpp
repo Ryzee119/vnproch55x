@@ -50,4 +50,5 @@ uint32_t KT_BinIO::FreeBuffer()
 {
     free(pReadBuff);
     free(pWriteBuff);
+    return 1;
 }
